@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Rachistructure.Builder;
+#if(!DEBUG)
+using System.Diagnostics;
+#endif
 
-namespace Rachistructure.DependencyResolvers
+namespace Rachistructure.DependecyResolver
 {
     /// <summary>
     /// 
     /// </summary>
+#if (!DEBUG)
+    [DebuggerStepThrough]
+    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
     public class InstanceProvider
     {
         private Dictionary<Type, Type> _instanceMap = new Dictionary<Type, Type>();
@@ -37,13 +45,13 @@ namespace Rachistructure.DependencyResolvers
         /// </summary>
         /// <typeparam name="TAbstractType">The type of the abstract type.</typeparam>
         /// <returns></returns>
-        public TAbstractType Resolve<TAbstractType>()
+        public TAbstractType Resolve<TAbstractType>(bool isProxy = false)
         {
-            TAbstractType resolvedAbstractType = (TAbstractType)Resolve(typeof(TAbstractType));
+            TAbstractType resolvedAbstractType = (TAbstractType)Resolve(typeof(TAbstractType), isProxy);
             return resolvedAbstractType;
         }
 
-        private object Resolve(Type abstractType)
+        private object Resolve(Type abstractType, bool isProxy)
         {
             if (_instanceMap.ContainsKey(abstractType))
             {
@@ -60,7 +68,7 @@ namespace Rachistructure.DependencyResolvers
                     {
                         ParameterInfo parameter = parameters[i];
                         Type parameterType = parameter.ParameterType;
-                        object parameterInstance = Resolve(parameterType);
+                        object parameterInstance = Resolve(parameterType, isProxy);
                         resolvedParameters[i] = parameterInstance;
                     }
 
@@ -71,7 +79,12 @@ namespace Rachistructure.DependencyResolvers
                     resolvedConcreteInstance = Activator.CreateInstance(concreteType);
                 }
 
-                // proxy
+                if (isProxy)
+                {
+                    object proxy = ProxyBuilder.CreateProxyObject(ProxyKind.RealProxy, concreteType, resolvedConcreteInstance);
+                    return proxy;
+                }
+
                 return resolvedConcreteInstance;
             }
 
