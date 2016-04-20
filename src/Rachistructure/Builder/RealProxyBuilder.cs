@@ -15,11 +15,13 @@ namespace Rachistructure.Builder
     /// <seealso cref="System.Runtime.Remoting.Proxies.RealProxy" />
 #if (!DEBUG)
     [DebuggerStepThrough]
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
     internal class RealProxyBuilder : RealProxy
     {
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly Type _type;
+
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         private readonly dynamic _concreteBaseType;
 
         public RealProxyBuilder(Type proxyBaseType)

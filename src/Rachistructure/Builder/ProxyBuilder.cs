@@ -10,7 +10,6 @@ namespace Rachistructure.Builder
     /// </summary>
 #if (!DEBUG)
     [DebuggerStepThrough]
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
     public sealed class ProxyBuilder
     {

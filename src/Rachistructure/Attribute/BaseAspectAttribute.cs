@@ -11,7 +11,6 @@ namespace Rachistructure.Attribute
     /// <seealso cref="System.Attribute" />
 #if (!DEBUG)
     [DebuggerStepThrough]
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
     public abstract class BaseAspectAttribute : System.Attribute
     {

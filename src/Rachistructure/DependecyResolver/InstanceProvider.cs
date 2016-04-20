@@ -13,7 +13,6 @@ namespace Rachistructure.DependecyResolver
     /// </summary>
 #if (!DEBUG)
     [DebuggerStepThrough]
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
 #endif
     public class InstanceProvider
     {
