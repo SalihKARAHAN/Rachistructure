@@ -18,10 +18,14 @@ namespace Rachistructure.Builder
 #endif
     internal class RealProxyBuilder : RealProxy
     {
+#if(!DEBUG)
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
         private readonly Type _type;
 
+#if(!DEBUG)
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
         private readonly dynamic _concreteBaseType;
 
         public RealProxyBuilder(Type proxyBaseType)
