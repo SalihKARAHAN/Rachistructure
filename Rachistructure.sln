@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rachistructure", "src\Rachistructure\Rachistructure.csproj", "{D6F7C0C0-B5A4-4793-B824-9F3213B47DAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7A53C4D0-DAB7-4B46-825B-256EB8D043E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{79F049CA-A9A4-40A6-AFA6-9F2D7EC57F80}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rachistructure.Test.Console", "test\Rachistructure.Test.Console\Rachistructure.Test.Console.csproj", "{03B63A97-43D0-4425-86A5-327B5A18CE78}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,16 +17,11 @@ Global
 		{D6F7C0C0-B5A4-4793-B824-9F3213B47DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F7C0C0-B5A4-4793-B824-9F3213B47DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F7C0C0-B5A4-4793-B824-9F3213B47DAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03B63A97-43D0-4425-86A5-327B5A18CE78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03B63A97-43D0-4425-86A5-327B5A18CE78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03B63A97-43D0-4425-86A5-327B5A18CE78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03B63A97-43D0-4425-86A5-327B5A18CE78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D6F7C0C0-B5A4-4793-B824-9F3213B47DAF} = {7A53C4D0-DAB7-4B46-825B-256EB8D043E2}
-		{03B63A97-43D0-4425-86A5-327B5A18CE78} = {79F049CA-A9A4-40A6-AFA6-9F2D7EC57F80}
 	EndGlobalSection
 EndGlobal
