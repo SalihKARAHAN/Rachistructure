@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Rachistructure.Builder;
 #if(!DEBUG)
@@ -13,9 +14,13 @@ namespace Rachistructure.DependecyResolver
     /// </summary>
 #if (!DEBUG)
     [DebuggerStepThrough]
+    [DebuggerDisplay("Items: {this._instanceMap} ItemsCount: {this._instanceMap.Count}")]
 #endif
     public class InstanceProvider
     {
+#if (!DEBUG)
+        [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
+#endif
         private Dictionary<Type, Type> _instanceMap = new Dictionary<Type, Type>();
 
         /// <summary>
@@ -87,7 +92,7 @@ namespace Rachistructure.DependecyResolver
                 return resolvedConcreteInstance;
             }
 
-            throw new Exception(string.Format("{0} do not resolved because {0} not registered on this container!"));
+            throw new Exception(string.Format("{0} do not resolved because {1} not registered on this container!"));
         }
     }
 }
