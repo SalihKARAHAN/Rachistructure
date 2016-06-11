@@ -9,7 +9,7 @@ namespace Rachistructure
     /// </summary>
 #if (!DEBUG)
     [DebuggerStepThrough]
-    [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+    [DebuggerDisplay("Name={Name}, Argumets={Arguments}")]
 #endif
     public class MethodMetadata
     {
@@ -19,6 +19,9 @@ namespace Rachistructure
         /// <value>
         /// The name.
         /// </value>
+#if (!DEBUG)
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
         public string Name { get; set; }
 
         /// <summary>
@@ -27,6 +30,9 @@ namespace Rachistructure
         /// <value>
         /// The arguments.
         /// </value>
+#if (!DEBUG)
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+#endif
         public object[] Arguments { get; set; }
     }
 }
