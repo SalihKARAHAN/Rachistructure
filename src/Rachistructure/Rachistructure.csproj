@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute\BaseAspectAttribute.cs" />
+    <Compile Include="Attribute\BaseExceptionHandlerAttribute.cs" />
     <Compile Include="Builder\ProxyBuilder.cs" />
     <Compile Include="Builder\RealProxyBuilder.cs" />
     <Compile Include="DependecyResolver\InstanceProvider.cs" />
-    <Compile Include="MethodMetadata.cs" />
+    <Compile Include="ContextManager.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyKind.cs" />
   </ItemGroup>
