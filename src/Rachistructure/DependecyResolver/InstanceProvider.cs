@@ -38,29 +38,39 @@ namespace Rachistructure.DependecyResolver
         /// TODO Edit XML Comment Template for _instanceMap
         [DebuggerBrowsable(DebuggerBrowsableState.Collapsed)]
 #endif
-        private Dictionary<Type, Type> _instanceMap = new Dictionary<Type, Type>();
+        private Dictionary<string, Type> _instanceMap = new Dictionary<string, Type>();
 
-        /// <summary>
-        /// Registers this instance.
-        /// </summary>
-        /// <typeparam name="TAbstractType">The type of the abstract type.</typeparam>
-        /// <typeparam name="TConcreteType">The type of the concrete type.</typeparam>
-        /// <exception cref="System.Exception"></exception>
-        /// <exception cref="Exception"></exception>
-        /// <remarks>Rachistructure</remarks>
-        public void Register<TAbstractType, TConcreteType>()
-            where TAbstractType : class
-            where TConcreteType : TAbstractType
+        public void Regiser<TConcreteType>()
         {
-            Type abstractType = typeof(TAbstractType);
-            Type concreteType = typeof(TConcreteType);
+            Type concreteType = typeof (TConcreteType);
+            this.Register(concreteType.FullName, concreteType);
+        }
 
-            if (_instanceMap.ContainsKey(abstractType))
+        public void Register<TConcreteType>(string registrationName)
+        {
+            Type concreteType = typeof(TConcreteType);
+            this.Register(registrationName, concreteType);   
+        }
+        
+        public void Register<TAbstractType, TConcreteType>()
+        {
+            Type concreteType = typeof(TConcreteType);
+            Type abstractType = typeof (TAbstractType);
+            this.Register(abstractType.FullName, concreteType);
+        }
+
+        //public void Register<TAbstractType, TConcreteType>(string registrationName)
+        //{
+        //}
+
+        public void Register(string registrationName, Type type)
+        {
+            if (_instanceMap.ContainsKey(registrationName))
             {
-                throw new Exception(string.Format("{0} type already in this container!", abstractType.FullName));
+                throw new Exception(string.Format("{0} name already in this container!", registrationName));
             }
 
-            _instanceMap.Add(abstractType, concreteType);
+            _instanceMap.Add(registrationName, type);
         }
 
         /// <summary>
@@ -72,7 +82,12 @@ namespace Rachistructure.DependecyResolver
         /// <remarks>Rachistructure</remarks>
         public TAbstractType Resolve<TAbstractType>(bool isProxy = false)
         {
-            TAbstractType resolvedAbstractType = (TAbstractType)Resolve(typeof(TAbstractType), isProxy);
+            return (TAbstractType) this.Resolve(typeof (TAbstractType).FullName, isProxy);
+        }
+
+        public TAbstractType Resolve<TAbstractType>(string name, bool isProxy)
+        {
+            TAbstractType resolvedAbstractType = (TAbstractType)Resolve(name, isProxy);
             return resolvedAbstractType;
         }
 
@@ -84,11 +99,11 @@ namespace Rachistructure.DependecyResolver
         /// <returns>System.Object.</returns>
         /// <exception cref="System.Exception"></exception>
         /// <remarks>Rachistructure</remarks>
-        private object Resolve(Type abstractType, bool isProxy)
+        private object Resolve(string registrationNames, bool isProxy)
         {
-            if (_instanceMap.ContainsKey(abstractType))
+            if (_instanceMap.ContainsKey(registrationNames))
             {
-                Type concreteType = _instanceMap[abstractType];
+                Type concreteType = _instanceMap[registrationNames];
                 ConstructorInfo firstConstructor = concreteType.GetConstructors()[0];
                 ParameterInfo[] parameters = firstConstructor.GetParameters();
                 object resolvedConcreteInstance = null;
@@ -101,7 +116,8 @@ namespace Rachistructure.DependecyResolver
                     {
                         ParameterInfo parameter = parameters[i];
                         Type parameterType = parameter.ParameterType;
-                        object parameterInstance = Resolve(parameterType, isProxy);
+                        // parametre türü nedir?
+                        object parameterInstance = Resolve("parameterType", isProxy);
                         resolvedParameters[i] = parameterInstance;
                     }
 
