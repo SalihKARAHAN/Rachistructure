@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Registrations\Argument.cs" />
     <Compile Include="Attribute\BaseAspectAttribute.cs" />
     <Compile Include="Attribute\BaseExceptionHandlerAttribute.cs" />
     <Compile Include="Builder\ProxyBuilder.cs" />
@@ -51,8 +52,11 @@
     <Compile Include="DependecyResolver\InstanceProvider.cs" />
     <Compile Include="ContextManager.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="LifeCycle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProxyKind.cs" />
+    <Compile Include="Registrations\Registration.cs" />
+    <Compile Include="Registrations\BaseRegistration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
